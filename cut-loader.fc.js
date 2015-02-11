@@ -6,9 +6,9 @@
  */
 
 if (typeof Cut === 'undefined' && typeof require === 'function')
-  Cut = require('./cut-core');
+  var Cut = require('./cut-core');
 
-DEBUG = (typeof DEBUG === 'undefined' || DEBUG) && console;
+DEBUG = typeof DEBUG === 'undefined' || DEBUG;
 
 /**
  * Cordova/PhoneGap FastCanvas plugin loader.
@@ -136,13 +136,13 @@ Cut.Loader.loadImage = function(src, handleComplete, handleError) {
   return image;
 };
 
-!function() {
-  // FastCanvas workaround
-  var nop = function() {
-  };
-  document.addEventListener('touchstart', nop);
-  document.addEventListener('mousedown', nop);
-  document.addEventListener('touchend', nop);
-  document.addEventListener('mouseup', nop);
+// FastCanvas workaround
+(function(nop) {
   document.addEventListener('click', nop);
-}();
+  document.addEventListener('mousedown', nop);
+  document.addEventListener('mouseup', nop);
+  document.addEventListener('touchstart', nop);
+  document.addEventListener('touchend', nop);
+  document.addEventListener('touchcancel', nop);
+})(function() {
+});

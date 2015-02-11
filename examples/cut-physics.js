@@ -7,12 +7,16 @@ Cut.PJS = function(world, options) {
   var self = this;
   this.world = world;
 
-  this.options = Cut._options({
+  this.options = Cut._extend({
     lineWidth : 2,
     lineColor : '#000000',
     fillColor : Cut.PJS.randomColor,
-    ratio : 1
-  }).mixin(options);
+    ratio : 1,
+    get : function(key) {
+      var value = this[key];
+      return typeof value === 'function' ? value() : value;
+    }
+  }, options);
 
   var subscribe = world.subscribe || world.on;
   subscribe.call(world, 'add:body', function(data) {
@@ -77,7 +81,7 @@ Cut.PJS.prototype.removeRenderable = function(obj) {
 };
 
 Cut.PJS.prototype.drawCircle = function(radius, options) {
-  options = this.options.extend(options);
+  options = Cut._extend(this.options, options);
   var lineWidth = options.get('lineWidth'), lineColor = options
       .get('lineColor'), fillColor = options.get('fillColor');
 
@@ -100,7 +104,7 @@ Cut.PJS.prototype.drawCircle = function(radius, options) {
 };
 
 Cut.PJS.prototype.drawConvex = function(verts, options) {
-  options = this.options.extend(options);
+  options = Cut._extend(this.options, options);
   var lineWidth = options.get('lineWidth'), lineColor = options
       .get('lineColor'), fillColor = options.get('fillColor');
 

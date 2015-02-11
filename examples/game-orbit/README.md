@@ -1,24 +1,26 @@
-# Orbit
+# [Orbit](http://play.cutjs.org/examples/game-orbit/)
 
 Orbit is a cross-platform demo game for [CutJS](http://cutjs.org/)—the best HTML5 engine for cross-platform game development!  To package this game for mobile devices [Cordova 3](http://cordova.apache.org/) is used.
 
-You can [play it here](http://play.cutjs.org/examples/game-orbit/).
+[Play it here](http://play.cutjs.org/examples/game-orbit/)
 
-Basically the game consists of following files:
+Basically this game consists of following files:
 - `www/index.html` the page viewing the game
 - `www/app.js` game code including logic and ui
 - `www/textures.js` definition of game graphic textures
-- `www/js/cut-*.js` CutJS files
 - `www/media/*` graphic image files
 
-To prepare the project for Cordova few more files are also needed:
-- Copy `cut-loader.web.js` to `www/js/cut-loader.js`
-- Copy `cut-loader.fc.js` to `merges/android/js/cut-loader.js`
-- Copy `cut-loader.cordova.js` to `merges/ios/js/cut-loader.js`
+In addition to the game files different CutJS builds are also needed for different platforms:
+- Copy `cut.web.js` to `www/js/cut.js`
+- Copy `cut.fc.js` to `merges/android/js/cut.js`
+- Copy `cut.cordova.js` to `merges/ios/js/cut.js`
 
-For other platforms do similar to iOS.
+For other Cordova platforms do similar to iOS.
 
-Now all you need is to build your project.  But before that make sure you have installed Cordova 3 CLI and NPM (yes, you need to google them).
+Now all you need is to build your project.  But first make sure you have [installed NPM](https://www.google.com/search?q=install+node.js+npm) and then install Cordova 3 CLI:
+```
+npm install -g cordova
+```
 
 You don't need to create a new Cordova project, but if you like just copy above files after creating it.
 

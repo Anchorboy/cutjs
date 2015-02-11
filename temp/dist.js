@@ -6,9 +6,3 @@
  */
 
 ${contents}
-
-if (typeof define === 'function' && define.amd) { // AMD
-  define('Cut', [], function() {
-    return Cut;
-  });
-}
